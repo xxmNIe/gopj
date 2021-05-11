@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package proto;
+
+import "hello-world/proto/google/api/annotations.proto";
+
+option go_package="hello-world/proto/;proto";
+
+
+service HelloWorld {
+  rpc SayHelloWorld(HelloWorldRequest) returns (HelloWorldResponse) {
+    option (google.api.http) = {
+      post: "/hello_world"
+      body: "*"
+    };
+  }
+}
+
+message HelloWorldRequest {
+  string referer = 1;
+}
+
+message HelloWorldResponse {
+  string message = 1;
+}
