@@ -5,3 +5,31 @@ gin
     中间件
         全局，加入全局路由中
         单个 ，加入具体路径后
+
+
+gorm
+    关联
+        belongs to
+                // `User` 属于 `Company`，`CompanyID` 是外键
+                type User struct {
+                  gorm.Model
+                  Name      string
+                  CompanyID int
+                  Company   Company
+                }
+                type Company struct {
+                  ID   int
+                  Name string
+                }
+        has one
+                // User 有一张 CreditCard，UserID 是外键
+                type User struct {
+                  gorm.Model
+                  CreditCard CreditCard
+                }
+
+                type CreditCard struct {
+                  gorm.Model
+                  Number string
+                  UserID uint
+                }
