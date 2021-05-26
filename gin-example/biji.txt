@@ -32,4 +32,20 @@ gorm
                   gorm.Model
                   Number string
                   UserID uint
-                }
+
+
+    表创建
+        db.AutoMigrate()
+        一般默认表名是结构体的复数形式,
+            禁用复数形式: db.SingularTable(true)
+            修改默认表名：
+                模型绑定帮方法 TableName()
+                db.Table("").Create(&User)
+            全局更改表名方法：gorm.DefaultTalbeNameHandler = func(db *gorm.DB,defuultTableName string) string {}
+    行改名
+        `gorm:column:xxx`
+
+    grom 的tag‘default’，会替换掉""和0值;且所有字段的零值都不会保存
+                         解决方法:
+                                1.使用指针的方式将零值存入   Name: *int64
+                                2.使用Scannser/Valuer    Name: sql.NullString(实现了Scannser/Valuer  )
