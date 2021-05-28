@@ -38,7 +38,9 @@ type fileListResp struct {
 	DiskTotal uint64      `json:"disk_total"`
 	DiskUsedP float64     `json:"disk_used_p"`
 }
-
+/*
+	返回前端的结构
+ */
 type item struct {
 	Filename string `json:"filename"`
 	IsDir    bool   `json:"is_dir"`
@@ -268,6 +270,7 @@ func fileCheck(w http.ResponseWriter, msg interface{}) {
 				file.Upload = up
 				respFileCheck(w, nil, true, nil)
 			} else {
+				//断点上传
 				if file.Upload.MD5 == req.MD5 {
 					// 新文件已经上传了
 					file.mergeUpload()

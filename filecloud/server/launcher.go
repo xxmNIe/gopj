@@ -22,6 +22,7 @@ func Launch() {
 	conf := fmt.Sprintf(`var httpAddr = "http://%s/file/";
 var root = "%s";
 var sliceSize = %d*1024*1024;`, config.WebAddr, root, config.SliceSize)
+	fmt.Println(conf)
 	err := ioutil.WriteFile(path.Join(config.WebIndex, "js/config.js"), []byte(conf), os.ModePerm)
 	if err != nil {
 		panic(err)
