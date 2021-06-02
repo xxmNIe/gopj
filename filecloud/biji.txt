@@ -12,8 +12,7 @@ http的 content-Type
       如何显示附加的文件
         w.Header().Add("content-disposition", "attachment; filename=\""+filename+"\"")
 
-        格式说明： content-disposition = "Content-Disposition" ":" disposition-type
-        *( ";" 格式说明： content-disposition = "Content-Disposition" ":" disposition-type *( ";" disposition-parm )disposition-parm )
+         格式说明： content-disposition = "Content-Disposition" ":" disposition-type *( ";" disposition-parm )disposition-parm )
         字段说明： Content-Disposition为属性名disposition-type是以什么方式下载;如attachment为以附件方式下载disposition-parm为默认保存时的文件名
                  当你在响应类型为application/octet- stream情况下使用了这个头信息的话，那就意味着你不想直接显示内容，而是弹出一个"文件下载"的对话框，接下来就是由你来决定"打开"还是"保存" 了。
 
