@@ -2,19 +2,18 @@ module fliecloud
 
 go 1.16
 
-require (
-	github.com/BurntSushi/toml v0.3.1
-	github.com/StackExchange/wmi v0.0.0-20210224194228-fe8f1750fd46 // indirect
-	github.com/go-ole/go-ole v1.2.5 // indirect
-	github.com/shirou/gopsutil v3.21.4+incompatible
-	github.com/yddeng/dnet v0.0.0-20210517045540-29976bdf5083
-	github.com/yddeng/dutil v0.0.0-20210518033953-18807197300c
-	github.com/yddeng/filecloud v0.0.0-20210414054422-4e5902e3a463
-
-)
-
 replace (
-	github.com/yddeng/filecloud  => ./
 	github.com/yddeng/dnet => ../dnet
 	github.com/yddeng/dutil => ../utils
+	github.com/yddeng/filecloud => ./
+)
+
+require (
+	github.com/BurntSushi/toml v0.4.1
+	github.com/StackExchange/wmi v1.2.1 // indirect
+	github.com/shirou/gopsutil v3.21.7+incompatible
+	github.com/yddeng/dnet v0.0.0-00010101000000-000000000000
+	github.com/yddeng/dutil v0.0.0-00010101000000-000000000000
+	github.com/yddeng/filecloud v0.0.0-00010101000000-000000000000
+	golang.org/x/sys v0.0.0-20210809222454-d867a43fc93e // indirect
 )

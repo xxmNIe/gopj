@@ -1,0 +1,38 @@
+package stream
+
+import (
+	"net"
+	"strings"
+
+	"go.uber.org/zap"
+	"newgit.op.ksyun.com/LiveOrigSideTeam/chronos/public"
+)
+
+func LookupHost(url string) string {
+	// flv or mp4
+	// FlvMp4_host -> http://inner-offlinetran-bj.ks-live.com:8091/offline/CreateTask
+	base := strings.Split(url, ":")
+	domain := strings.Split(base[1], "//")[1]
+	cacheName := "flvormp4"
+	value, ok := public.Cache.Get(cacheName)
+	if ok {
+		urlx, ok := value.(string)
+		if ok {
+			return urlx
+		}
+	}
+
+	addrs, err := net.LookupHost(domain)
+	if err != nil || addrs == nil || len(addrs) == 0 {
+		public.Log.Error("LookupHost", zap.String("url", domain), zap.Error(err))
+		return url
+	}
+
+	var s strings.Builder
+	s.WriteString("http://")
+	s.WriteString(addrs[0])
+	s.WriteString(base[2])
+	public.Cache.SetDefault(cacheName, s.String())
+	public.Log.Info("set cache", zap.String("ipurl", s.String()), zap.String("url", domain), zap.Strings("addrs", addrs))
+	return s.String()
+}

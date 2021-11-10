@@ -1,4 +1,10 @@
 package main
+
+import (
+	"fmt"
+	"path/filepath"
+)
+
 //
 //import (
 //	"fmt"
@@ -11,7 +17,7 @@ package main
 //
 //	r :=gin.Default()
 //	//限制上传文件最大值
-    //8MB
+//8MB
 //	r.MaxMultipartMemory = 8<<20
 //
 //	r.GET("/", func(context *gin.Context) {
@@ -72,3 +78,7 @@ package main
 //
 //	r.Run(":8080")
 //}
+
+func main() {
+	fmt.Println(filepath.Join("a", "b"))
+}
